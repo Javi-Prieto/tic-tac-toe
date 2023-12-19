@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tic-tac-toe-51cff": {
+      "hosting": {
+        "tic-tac-toe-game": [
+          "tic-tac-toe-51cff"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tic-tac-toe-51cff"
+  }
+}
