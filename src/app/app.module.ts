@@ -13,13 +13,16 @@ import { GamePageComponent } from './ui/game-page/game-page.component';
 import { BoardComponent } from './components/board/board.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
+import { NewGamePageComponent } from './ui/new-game-page/new-game-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     GamePageComponent,
-    BoardComponent
+    BoardComponent,
+    NewGamePageComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { environment } from '../environments/environment';
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
+    FormsModule,
     NgbModule
   ],
   providers: [

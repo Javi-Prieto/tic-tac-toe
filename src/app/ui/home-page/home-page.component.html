@@ -1,3 +1,21 @@
 <div class="w-100 bg-secondary flex-column d-flex min-vh-100 d-flex align-content-center">
-    <button class="btn btn-lg btn-primary" [routerLink]="['game']">Start a new game</button>
+    <button class="btn btn-lg btn-primary"  (click)="open(content)">Start a new game</button>
 </div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+				<label for="name">Enter your name </label>
+                <input type="text" name="name" id="name" class="form-control" [(ngModel)]="name">
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="goGame()">Save</button>
+	</div>
+</ng-template>
