@@ -1,11 +1,26 @@
-<div class="row border border-1 rounded-2 w-50 m-auto" id="board">
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c1" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c2" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c3" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c4" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c5" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c6" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c7" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c8" (click)="onClickedBox($event)"></div>
-    <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center" id="c9" (click)="onClickedBox($event)"></div>
+<div class=" rounded-3 z-2 m-auto position-absolute" *ngIf="isWaiting">
+    <h1 class="text-white display-1 fw-bold text-center">Waiting for your oponent</h1>
 </div>
+<div class="min-vh-100 min-vw-100 bg-dark z-1 position-absolute" *ngIf="isWaiting"></div>
+<div class="row">
+    <div class="col-2">
+        <h1 class="display-1 fw-bold text-center">{{player1}} X</h1>
+    </div>
+    <div class="col-8">
+        <div class="row border border-1 rounded-2" id="board">
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c1" (click)="onClickedBox($event)">{{c1}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c2" (click)="onClickedBox($event)">{{c2}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c3" (click)="onClickedBox($event)">{{c3}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c4" (click)="onClickedBox($event)">{{c4}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c5" (click)="onClickedBox($event)">{{c5}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c6" (click)="onClickedBox($event)">{{c6}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c7" (click)="onClickedBox($event)">{{c7}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c8" (click)="onClickedBox($event)">{{c8}}</div>
+            <div class="col-4 border boder-1 h78 d-flex align-items-center justify-content-center display-1 fw-bold" id="c9" (click)="onClickedBox($event)">{{c9}}</div>
+        </div>
+    </div>
+    <div class="col-2">
+        <h1 class="display-1 fw-bold text-center">{{player2}} O</h1>
+    </div>
+</div>
+
