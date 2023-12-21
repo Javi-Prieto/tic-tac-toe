@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { GameService } from '../../services/game.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuerySnapshot, onSnapshot } from '@angular/fire/firestore';
 @Component({
   selector: 'app-board',
@@ -8,7 +8,6 @@ import { QuerySnapshot, onSnapshot } from '@angular/fire/firestore';
   styleUrl: './board.component.css'
 })
 export class BoardComponent implements OnInit {
-  board: string[] = [];
   row = 0; 
   route: ActivatedRoute = inject(ActivatedRoute);
   gameId;
@@ -24,7 +23,7 @@ export class BoardComponent implements OnInit {
   c9: string = '';
   player1: string = '';
   player2: string = '';
-  constructor(private gameService: GameService){
+  constructor(private gameService: GameService, private router: Router){
     this.gameId = this.route.snapshot.params['id'];
   }
 
@@ -48,6 +47,9 @@ export class BoardComponent implements OnInit {
       this.c9 = game.get('c9');
       this.player1 = game.get('player1');
       this.player2 = game.get('player2');
+      if(game.get('winner') != 'null'){
+        this.router.navigate(['/']);
+      }
   });
       
     
@@ -63,7 +65,6 @@ export class BoardComponent implements OnInit {
     let boxClickeId = ellement.id;
     let boxValue;
     onSnapshot(doc, (doc) => {
-      console.log(doc.get(boxClickeId));
       canClick = doc.get(boxClickeId) == ''? true: false;
     });
     if(content.length != 0){
@@ -85,27 +86,35 @@ export class BoardComponent implements OnInit {
         }
         
       }
+      this.checkWin(whoGoes);
     };
-    this.checkWin(whoGoes);
+    
   }
 
   checkWin(whoGoes: boolean){
-    let check123 = this.c1.match(this.c2) && this.c2.match(this.c3);
-    let check456 = this.c4.match(this.c5) && this.c5.match(this.c6);
-    let check789 = this.c7.match(this.c8) && this.c8.match(this.c9);
-    let check147 = this.c1.match(this.c4) && this.c4.match(this.c7);
-    let check258 = this.c2.match(this.c5) && this.c5.match(this.c8);
-    let check369 = this.c3.match(this.c6) && this.c9.match(this.c6);
-    let check159 = this.c1.match(this.c5) && this.c9.match(this.c5);
-    let check357 = this.c3.match(this.c5) && this.c7.match(this.c5);
+    let check123 = this.c1===this.c2 && this.c2===this.c3 && this.c1.length!=0;
+    let check456 = this.c4===this.c5 && this.c5===this.c6 && this.c4.length!=0;
+    let check789 = this.c7===this.c8 && this.c8===this.c9 && this.c7.length!=0;
+    let check147 = this.c1===this.c4 && this.c4===this.c7 && this.c1.length!=0;
+    let check258 = this.c2===this.c5 && this.c5===this.c8 && this.c2.length!=0;
+    let check369 = this.c3===this.c6 && this.c9===this.c6 && this.c3.length!=0;
+    let check159 = this.c1===this.c5 && this.c9===this.c5 && this.c1.length!=0;
+    let check357 = this.c3===this.c5 && this.c7===this.c5 && this.c3.length!=0;
+    let draw = this.c1.length!=0 && this.c2.length!=0 && this.c3.length!=0 && this.c4.length!=0 && this.c5.length!=0 && this.c6.length!=0 && this.c7.length!=0 && this.c8.length!=0 && this.c9.length!=0
     
     if(check123 || check456 || check789 || check147 || check258 || check369 || check159 || check357){
-      if(whoGoes){
+      if(!whoGoes){
         alert(this.player1 + 'WINS!!!!!!!!');
+        this.gameService.finishGame(this.player1, this.gameId);
       }else{
         alert(this.player2 + 'WINS!!!!!!!!');
+        this.gameService.finishGame(this.player2, this.gameId);
       };
     };
+    if(draw){
+      alert('Was a Draw');
+      this.gameService.finishGame('draw', this.gameId);
+    }
 
     
   }

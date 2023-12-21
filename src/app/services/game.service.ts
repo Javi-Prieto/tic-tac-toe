@@ -88,4 +88,8 @@ export class GameService {
     let selectedGame = await getDoc(doc(this.firestore, COLLECTION, id));
     return selectedGame.get('goesX');
   }
+  finishGame(name: string, id:string){
+    let selectedGameRef = doc(this.firestore, COLLECTION, id);
+    updateDoc(selectedGameRef, {winner: name});
+  }
 }
