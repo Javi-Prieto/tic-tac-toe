@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { NewGamePageComponent } from './ui/new-game-page/new-game-page.component';
+import { RegisterPageComponent } from './ui/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewGamePageComponent } from './ui/new-game-page/new-game-page.component
     HomePageComponent,
     GamePageComponent,
     BoardComponent,
-    NewGamePageComponent
+    NewGamePageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

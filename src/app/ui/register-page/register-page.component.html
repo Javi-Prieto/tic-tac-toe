@@ -1,0 +1,49 @@
+<div class="min-vh-100 w-100">
+    <div class="row w-50 align-self-center">
+        <div class="col-6">
+            <div class="mb-3">
+				<label for="email">Enter your email </label>
+                <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email">
+			</div>
+            <div class="mb-3">
+				<label for="pswd">Enter your Password</label>
+                <input type="password" name="pswd" id="pswd" class="form-control" [(ngModel)]="pswd">
+			</div>
+            <button type="button" class="btn btn-outline-dark" (click)="registerEmailPswd()" *ngIf="isRegister">Register</button>
+            <button type="button" class="btn btn-outline-dark" (click)="registerEmailPswd()" *ngIf="!isRegister">Log In </button>
+            <p *ngIf="isRegister">Or <button class="btn btn-outline-dark" (click)="isRegister = false">Log In </button> if you already Register</p>
+            <p *ngIf="!isRegister">Or <button class="btn btn-outline-dark" (click)="isRegister = false">Register</button> if you do not have an account </p>
+        </div>
+        <div class="col-6">
+            <h2 class="h2 fw-bold display-3">Sign in</h2>
+
+            <button class="btn btn-lg btn-primary" (click)="registerGoogle()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                    <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+                  </svg>
+            </button>
+
+        </div>
+        <div class="col-12 text-center" style="cursor: pointer;" (click)="open(content)">
+            Play as an invitate
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+				<label for="name">Enter your name </label>
+                <input type="text" name="name" id="name" class="form-control" [(ngModel)]="name">
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="registerName()">Save</button>
+	</div>
+</ng-template>

@@ -17,7 +17,7 @@ export class HomePageComponent {
 	}
 
   goGame(){
-    this.gService.addPlayer(this.name)
+    this.gService.addPlayer(window.localStorage.getItem('PLAYER_NAME')!)
     .then(ans => {
       this.modalService.dismissAll();
       let gameId = ans.id;
